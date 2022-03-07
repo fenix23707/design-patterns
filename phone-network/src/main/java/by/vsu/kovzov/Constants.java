@@ -2,6 +2,7 @@ package by.vsu.kovzov;
 
 import by.vsu.kovzov.models.tariffs.CallTariff;
 import by.vsu.kovzov.models.tariffs.impl.ATariff;
+import by.vsu.kovzov.models.tariffs.impl.AbstractTariff;
 
 import java.util.Arrays;
 import java.util.List;

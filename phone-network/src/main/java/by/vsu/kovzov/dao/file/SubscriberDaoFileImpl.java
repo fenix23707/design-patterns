@@ -40,16 +40,20 @@ public class SubscriberDaoFileImpl implements SubscriberDao {
     @Override
     public Subscriber update(Subscriber subscriber) {
         List<Subscriber> subscribers = read();
-        subscribers.stream()
-                .parallel()
-                .filter(sub -> sub.equals(subscriber))
-                .map(sub -> subscriber);
+
+        Subscriber oldSub = subscribers.stream()
+                .filter(s -> s.getPhone().equals(subscriber.getPhone()))
+                .findAny()
+                .orElseThrow(() -> new RuntimeException("Subscriber: " + subscriber + " doesn't exist"));
+        oldSub.setPhone(subscriber.getPhone());
+        oldSub.setBalance(subscriber.getBalance());
+        oldSub.setTariff(subscriber.getTariff());
         write(subscribers);
         return subscriber;
     }
 
     private List<Subscriber> read() {
-        try (ObjectInputStream stream = new ObjectInputStream(new FileInputStream(FILE_PATH))){
+        try (ObjectInputStream stream = new ObjectInputStream(new FileInputStream(FILE_PATH))) {
             return (List<Subscriber>) stream.readObject();
         } catch (FileNotFoundException e) {
             return new ArrayList<>();
@@ -59,7 +63,7 @@ public class SubscriberDaoFileImpl implements SubscriberDao {
     }
 
     private void write(List<Subscriber> subscribers) {
-        try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(FILE_PATH))){
+        try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {
             stream.writeObject(subscribers);
         } catch (Exception e) {
             throw new RuntimeException(e);

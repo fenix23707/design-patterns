@@ -11,11 +11,13 @@ import by.vsu.kovzov.models.operations.CallOperation;
 import by.vsu.kovzov.models.operations.Operation;
 import by.vsu.kovzov.models.tariffs.Tariff;
 import by.vsu.kovzov.models.tariffs.impl.ATariff;
+import by.vsu.kovzov.models.tariffs.impl.AbstractTariff;
 import by.vsu.kovzov.services.OperationService;
 import by.vsu.kovzov.services.SubscriberService;
 import by.vsu.kovzov.services.impl.OperationServiceImpl;
 import by.vsu.kovzov.services.impl.SubscriberServiceImpl;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -23,6 +25,8 @@ import static by.vsu.kovzov.Constants.OUTER_OPERATOR_CODES;
 import static by.vsu.kovzov.Constants.TARIFFS;
 
 public class Main {
+    private final static String dataDir = "data/";
+
     private static List<Class<? extends Tariff>> tariffs = Arrays.asList(ATariff.class);
 
     private static OperationService operationService;
@@ -30,15 +34,16 @@ public class Main {
     private static SubscriberService subscriberService;
 
     static {
-        SubscriberDao subscriberDao = new SubscriberDaoFileImpl("data/subscribers.data");
+        SubscriberDao subscriberDao = new SubscriberDaoFileImpl(dataDir + "subscribers.data");
         subscriberService = new SubscriberServiceImpl(subscriberDao);
 
-        OperationDao operationDao = new OperationDaoFileImpl("data/operations.data");
+        OperationDao operationDao = new OperationDaoFileImpl(dataDir + "operations.data");
         operationService = new OperationServiceImpl(operationDao, subscriberService);
 
     }
 
     public static void main(String[] args) {
+        cleanData();
         initSubscribers();
         initOperations();
 
@@ -59,10 +64,16 @@ public class Main {
         }
     }
 
+    public static void cleanData() {
+        File file = new File(dataDir);
+        Arrays.stream(file.listFiles()).forEach(f -> f.delete());
+    }
+
     public static void initSubscribers() {
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
-            BigDecimal balance = BigDecimal.valueOf(random.nextInt(500));
+//            BigDecimal balance = BigDecimal.valueOf(random.nextInt(500));
+            BigDecimal balance = BigDecimal.ZERO;
             Subscriber subscriber = new Subscriber(getRandomPhone(), balance, randomTariff());
             subscriberService.save(subscriber);
         }

@@ -40,7 +40,7 @@ public class OperationServiceImpl implements OperationService {
     private BigDecimal calculateBalance(Operation operation) {
         Subscriber subscriber = operation.getOwner();
         BigDecimal balance = subscriber.getBalance();
-        balance.subtract(operation.getPrice());
+        balance = balance.subtract(operation.getPrice());
         return balance;
     }
 }

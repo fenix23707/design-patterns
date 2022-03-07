@@ -4,20 +4,16 @@ import by.vsu.kovzov.models.Phone;
 import by.vsu.kovzov.models.Subscriber;
 import by.vsu.kovzov.models.info.CallInfo;
 import by.vsu.kovzov.models.tariffs.impl.ATariff;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import by.vsu.kovzov.models.tariffs.impl.AbstractTariff;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import static by.vsu.kovzov.Constants.TARIFFS;
-import static by.vsu.kovzov.models.tariffs.impl.ATariff.INNER_PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CallTariffTest {
@@ -38,19 +34,19 @@ class CallTariffTest {
                 Arguments.of(
                         TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 60 * 1000)),
-                        BigDecimal.valueOf(INNER_PRICE)
+                        BigDecimal.valueOf(((ATariff)TARIFFS.get(ATariff.class)).innerCallPrice)
                 ),
 
                 Arguments.of(
                         TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 61 * 1000)),
-                        BigDecimal.valueOf(INNER_PRICE / 6 * 7)
+                        BigDecimal.valueOf(((ATariff)TARIFFS.get(ATariff.class)).innerCallPrice / 6 * 7)
                 ),
 
                 Arguments.of(
                         TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 4 * 1000)),
-                        BigDecimal.valueOf(INNER_PRICE / 6 * 1)
+                        BigDecimal.valueOf(((ATariff)TARIFFS.get(ATariff.class)).innerCallPrice / 6 * 1)
                 )
         );
     }
