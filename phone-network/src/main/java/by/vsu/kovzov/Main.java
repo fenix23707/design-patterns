@@ -7,8 +7,10 @@ import by.vsu.kovzov.dao.file.SubscriberDaoFileImpl;
 import by.vsu.kovzov.models.Phone;
 import by.vsu.kovzov.models.Subscriber;
 import by.vsu.kovzov.models.info.CallInfo;
+import by.vsu.kovzov.models.info.SmsInfo;
 import by.vsu.kovzov.models.operations.CallOperation;
 import by.vsu.kovzov.models.operations.Operation;
+import by.vsu.kovzov.models.operations.SmsOperation;
 import by.vsu.kovzov.models.tariffs.Tariff;
 import by.vsu.kovzov.models.tariffs.impl.ATariff;
 import by.vsu.kovzov.models.tariffs.impl.AbstractTariff;
@@ -33,6 +35,8 @@ public class Main {
 
     private static SubscriberService subscriberService;
 
+    private final static Random RANDOM = new Random();
+
     static {
         SubscriberDao subscriberDao = new SubscriberDaoFileImpl(dataDir + "subscribers.data");
         subscriberService = new SubscriberServiceImpl(subscriberDao);
@@ -53,15 +57,33 @@ public class Main {
 
     public static void initOperations() {
         List<Subscriber> subscribers = subscriberService.findAll();
-        Random random = new Random();
         for (int i = 0; i < 5; i++) {
-            CallInfo info = new CallInfo(subscribers.get(0),
-                    subscribers.get(1 + random.nextInt(subscribers.size() - 1)),
-                    new Date(),
-                    new Date(System.currentTimeMillis() + 1000 * random.nextInt(60)));
-            Operation operation = new CallOperation(info);
+            int choose = RANDOM.nextInt(3);
+            Operation operation;
+            if (choose == 0) {
+                operation = getRandomCallOperation(subscribers);
+            } else if (choose == 1) {
+                operation = getRandomSmsOperation(subscribers);
+            } else {
+                operation = getRandomSmsOperation(subscribers);
+            }
             operationService.save(operation);
         }
+    }
+
+    private static Operation getRandomCallOperation(List<Subscriber> subscribers) {
+
+        CallInfo info = new CallInfo(subscribers.get(0),
+                subscribers.get(1 + RANDOM.nextInt(subscribers.size() - 1)),
+                new Date(),
+                new Date(System.currentTimeMillis() + 1000 * RANDOM.nextInt(60)));
+        return new CallOperation(info);
+    }
+
+    private static Operation getRandomSmsOperation(List<Subscriber> subscribers) {
+        SmsInfo info = new SmsInfo(subscribers.get(0),
+                subscribers.get(1 + RANDOM.nextInt(subscribers.size() - 1)));
+        return new SmsOperation(info);
     }
 
     public static void cleanData() {

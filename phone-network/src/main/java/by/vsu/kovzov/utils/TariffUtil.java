@@ -8,13 +8,13 @@ import java.time.Duration;
 
 import static by.vsu.kovzov.Constants.OUTER_OPERATOR_CODES;
 
-public class CallTariffUtil {
+public class TariffUtil {
 
-    public static boolean isInnerCall(Phone phone) {
+    public static boolean isInner(Phone phone) {
         return "00375".equals(phone.getCountryCode()) && "55".equals(phone.getOperatorCode());
     }
 
-    public static boolean isOuterCall(Phone phone) {
+    public static boolean isOuter(Phone phone) {
         return "00375".equals(phone.getCountryCode())
                 && OUTER_OPERATOR_CODES.contains(phone.getOperatorCode());
     }

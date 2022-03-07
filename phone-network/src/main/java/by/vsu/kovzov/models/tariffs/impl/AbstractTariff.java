@@ -2,26 +2,34 @@ package by.vsu.kovzov.models.tariffs.impl;
 
 import by.vsu.kovzov.models.Phone;
 import by.vsu.kovzov.models.info.CallInfo;
+import by.vsu.kovzov.models.info.SmsInfo;
 import by.vsu.kovzov.models.tariffs.CallTariff;
+import by.vsu.kovzov.models.tariffs.SmsTariff;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 
-import static by.vsu.kovzov.utils.CallTariffUtil.isRoaming;
-import static by.vsu.kovzov.utils.CallTariffUtil.isInnerCall;
-import static by.vsu.kovzov.utils.CallTariffUtil.isOuterCall;
+import static by.vsu.kovzov.utils.TariffUtil.isRoaming;
+import static by.vsu.kovzov.utils.TariffUtil.isInner;
+import static by.vsu.kovzov.utils.TariffUtil.isOuter;
 
-public abstract class AbstractTariff implements CallTariff {
+public abstract class AbstractTariff implements CallTariff, SmsTariff {
     public final double roamingCallPrice ;
     public final double innerCallPrice ;
     public final double outerCallPrice ;
     public final double stationaryCallPrice ;
 
-    public AbstractTariff(double roamingCallPrice, double innerCallPrice, double outerCallPrice, double stationaryCallPrice) {
+    public final double roamingSmsPrice ;
+    public final double innerSmsPrice ;
+
+
+    public AbstractTariff(double roamingCallPrice, double innerCallPrice, double outerCallPrice, double stationaryCallPrice, double roamingSmsPrice, double innerSmsPrice) {
         this.roamingCallPrice = roamingCallPrice;
         this.innerCallPrice = innerCallPrice;
         this.outerCallPrice = outerCallPrice;
         this.stationaryCallPrice = stationaryCallPrice;
+        this.roamingSmsPrice = roamingSmsPrice;
+        this.innerSmsPrice = innerSmsPrice;
     }
 
     @Override
@@ -30,9 +38,9 @@ public abstract class AbstractTariff implements CallTariff {
         BigDecimal price;
         if (isRoaming(phoneTo)) {
             price = getRoamingCallPrice(info);
-        } else if (isInnerCall(phoneTo)) {
+        } else if (isInner(phoneTo)) {
             price = getInnerCallPrice(info);
-        } else if (isOuterCall(phoneTo)) {
+        } else if (isOuter(phoneTo)) {
             price = getOuterCallPrice(info);
         } else {
             price = getStationaryCallPrice(info);
@@ -62,6 +70,26 @@ public abstract class AbstractTariff implements CallTariff {
         return getPriceCoefficient()
                 .multiply(BigDecimal.valueOf(stationaryCallPrice))
                 .multiply(BigDecimal.valueOf(getBillingPieces(info)));
+    }
+
+    @Override
+    public BigDecimal getPrice(SmsInfo info) {
+        Phone phoneTo = info.getTo().getPhone();
+        BigDecimal price;
+        if (isRoaming(phoneTo)) {
+            price = getRoamingSmsPrice(info);
+        } else {
+            price = getInnerSmsPrice(info);
+        }
+        return price;
+    }
+
+    protected BigDecimal getRoamingSmsPrice(SmsInfo info) {
+        return BigDecimal.valueOf(roamingSmsPrice);
+    }
+
+    protected BigDecimal getInnerSmsPrice(SmsInfo info) {
+        return BigDecimal.valueOf(innerSmsPrice);
     }
 
     protected int getBillingPieces(CallInfo info) {

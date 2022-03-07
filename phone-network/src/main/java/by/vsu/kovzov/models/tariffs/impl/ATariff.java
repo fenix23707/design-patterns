@@ -9,6 +9,6 @@ public class ATariff extends AbstractTariff{
     }
 
     public ATariff() {
-        super(2500, 25, 125, 95);
+        super(2500, 25, 125, 95, 1000, 150);
     }
 }
