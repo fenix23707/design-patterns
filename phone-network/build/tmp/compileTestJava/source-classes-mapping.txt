@@ -1,2 +1,0 @@
-by/vsu/kovzov/models/tariffs/CallTariffTest.java
- by.vsu.kovzov.models.tariffs.CallTariffTest

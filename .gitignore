@@ -1,6 +1,6 @@
-
+**/data/
 #Gradle
-.gradle
+**/.gradle/
 **/build/
 
 # Compiled class file
