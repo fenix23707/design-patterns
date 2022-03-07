@@ -1,6 +1,8 @@
 package by.vsu.kovzov.models.tariffs;
 
 
-public interface Tariff {
+import java.io.Serializable;
+
+public interface Tariff extends Serializable {
     // Implementation have to be singleton
 }

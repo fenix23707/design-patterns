@@ -16,17 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import static by.vsu.kovzov.Constants.TARIFFS;
 import static by.vsu.kovzov.models.tariffs.impl.ATariff.INNER_PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CallTariffTest {
-    private static final Map<Class<? extends CallTariff>, CallTariff> tariffs = new HashMap<>();
-
-    @BeforeAll
-    static void beforeAll() {
-        tariffs.put(ATariff.class, new ATariff());
-    }
-
     @ParameterizedTest
     @MethodSource("innerCallData")
     void innerCallGetPriceTest(CallTariff tariff, CallInfo info, BigDecimal expected) {
@@ -42,19 +36,19 @@ class CallTariffTest {
         return Stream.of(
                 // A tariff
                 Arguments.of(
-                        tariffs.get(ATariff.class),
+                        TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 60 * 1000)),
                         BigDecimal.valueOf(INNER_PRICE)
                 ),
 
                 Arguments.of(
-                        tariffs.get(ATariff.class),
+                        TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 61 * 1000)),
                         BigDecimal.valueOf(INNER_PRICE / 6 * 7)
                 ),
 
                 Arguments.of(
-                        tariffs.get(ATariff.class),
+                        TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 4 * 1000)),
                         BigDecimal.valueOf(INNER_PRICE / 6 * 1)
                 )

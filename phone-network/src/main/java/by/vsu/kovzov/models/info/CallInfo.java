@@ -2,9 +2,10 @@ package by.vsu.kovzov.models.info;
 
 import by.vsu.kovzov.models.Subscriber;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CallInfo {
+public class CallInfo implements Serializable {
     private Subscriber from;
 
     private Subscriber to;
@@ -34,5 +35,15 @@ public class CallInfo {
 
     public Date getEnd() {
         return end;
+    }
+
+    @Override
+    public String toString() {
+        return "CallInfo{" +
+                "from=" + from +
+                ", to=" + to +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
     }
 }

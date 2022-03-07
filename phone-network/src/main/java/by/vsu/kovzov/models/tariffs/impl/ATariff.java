@@ -35,17 +35,18 @@ public class ATariff implements CallTariff {
     }
 
     protected BigDecimal getInnerCallPrice(CallInfo info) {
-        return getOnePiecePrice().multiply(BigDecimal.valueOf(getBillingPieces(info)));
+        return getPriceCoefficient()
+                .multiply(BigDecimal.valueOf(INNER_PRICE))
+                .multiply(BigDecimal.valueOf(getBillingPieces(info)));
     }
 
     protected int getBillingPieces(CallInfo info) {
         return (int) Math.ceil(getDuration(info).getSeconds() / ((double) getBillingTime().getSeconds()));
-
     }
 
-    protected BigDecimal getOnePiecePrice() {
+    private BigDecimal getPriceCoefficient() {
         return BigDecimal.valueOf(
-                INNER_PRICE * getBillingTime().getSeconds() / ((double) Duration.ofMinutes(1).getSeconds())
+                getBillingTime().getSeconds() / ((double) Duration.ofMinutes(1).getSeconds())
         );
     }
 

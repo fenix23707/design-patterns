@@ -27,4 +27,11 @@ public class CallOperation extends Operation {
             throw new RuntimeException("Tariff " + info.getFrom().getTariff() + " doesn't support call operation");
         }
     }
+
+    @Override
+    public String toString() {
+        return "CallOperation{" +
+                "info=" + info +
+                '}';
+    }
 }
