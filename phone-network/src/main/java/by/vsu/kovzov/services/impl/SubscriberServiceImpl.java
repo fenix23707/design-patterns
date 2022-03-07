@@ -5,6 +5,7 @@ import by.vsu.kovzov.models.Phone;
 import by.vsu.kovzov.models.Subscriber;
 import by.vsu.kovzov.services.SubscriberService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class SubscriberServiceImpl implements SubscriberService {
@@ -35,5 +36,11 @@ public class SubscriberServiceImpl implements SubscriberService {
             subscriber = subscriberDao.update(oldValue);
         }
         return subscriber;
+    }
+
+    @Override
+    public void updateBalance(Subscriber subscriber, BigDecimal balance) {
+        subscriber.setBalance(balance);
+        subscriberDao.update(subscriber);
     }
 }

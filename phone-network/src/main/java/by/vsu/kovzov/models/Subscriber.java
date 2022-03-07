@@ -50,5 +50,12 @@ public class Subscriber implements Serializable {
         this.tariff = tariff;
     }
 
-
+    @Override
+    public String toString() {
+        return "Subscriber{" +
+                "phone=" + phone +
+                ", balance=" + balance +
+                ", tariff=" + tariff +
+                '}';
+    }
 }

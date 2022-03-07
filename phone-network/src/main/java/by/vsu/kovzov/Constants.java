@@ -4,7 +4,6 @@ import by.vsu.kovzov.models.tariffs.CallTariff;
 import by.vsu.kovzov.models.tariffs.impl.ATariff;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

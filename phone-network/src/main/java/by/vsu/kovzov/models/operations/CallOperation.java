@@ -1,5 +1,6 @@
 package by.vsu.kovzov.models.operations;
 
+import by.vsu.kovzov.models.Subscriber;
 import by.vsu.kovzov.models.info.CallInfo;
 import by.vsu.kovzov.models.tariffs.CallTariff;
 import by.vsu.kovzov.models.tariffs.Tariff;
@@ -16,6 +17,11 @@ public class CallOperation extends Operation {
     public CallOperation(Long id, CallInfo info) {
         super(id);
         this.info = info;
+    }
+
+    @Override
+    public Subscriber getOwner() {
+        return info.getFrom();
     }
 
     @Override

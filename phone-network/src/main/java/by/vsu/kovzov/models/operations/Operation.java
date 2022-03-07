@@ -1,5 +1,7 @@
 package by.vsu.kovzov.models.operations;
 
+import by.vsu.kovzov.models.Subscriber;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -14,6 +16,8 @@ public abstract class Operation implements Serializable {
     public Operation(Long id) {
         this.id = id;
     }
+
+    public abstract Subscriber getOwner();
 
     protected abstract BigDecimal calculatePrice();
 

@@ -30,11 +30,12 @@ public class Main {
     private static SubscriberService subscriberService;
 
     static {
-        OperationDao operationDao = new OperationDaoFileImpl("data/operations.data");
-        operationService = new OperationServiceImpl(operationDao);
-
         SubscriberDao subscriberDao = new SubscriberDaoFileImpl("data/subscribers.data");
         subscriberService = new SubscriberServiceImpl(subscriberDao);
+
+        OperationDao operationDao = new OperationDaoFileImpl("data/operations.data");
+        operationService = new OperationServiceImpl(operationDao, subscriberService);
+
     }
 
     public static void main(String[] args) {
