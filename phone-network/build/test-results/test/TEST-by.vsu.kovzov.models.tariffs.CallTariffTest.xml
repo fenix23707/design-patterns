@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="by.vsu.kovzov.models.tariffs.CallTariffTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-03-07T11:53:16" hostname="DESKTOP-K0BK2HG" time="0.043">
+  <properties/>
+  <testcase name="[1] by.vsu.kovzov.models.tariffs.impl.ATariff@25777828, by.vsu.kovzov.models.info.CallInfo@584c005c, 25.0" classname="by.vsu.kovzov.models.tariffs.CallTariffTest" time="0.037"/>
+  <testcase name="[2] by.vsu.kovzov.models.tariffs.impl.ATariff@25777828, by.vsu.kovzov.models.info.CallInfo@2f364c3f, 29.166666666666668" classname="by.vsu.kovzov.models.tariffs.CallTariffTest" time="0.001"/>
+  <testcase name="[3] by.vsu.kovzov.models.tariffs.impl.ATariff@25777828, by.vsu.kovzov.models.info.CallInfo@5a725bbf, 4.166666666666667" classname="by.vsu.kovzov.models.tariffs.CallTariffTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
