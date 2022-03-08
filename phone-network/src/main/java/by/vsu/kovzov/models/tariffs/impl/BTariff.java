@@ -40,6 +40,16 @@ public class BTariff extends AbstractTariff{
         return getCallPrice(innerCallPrice, innerFirstMinCallPrice, info);
     }
 
+    @Override
+    protected BigDecimal getOuterCallPrice(CallInfo info) {
+        return getCallPrice(outerCallPrice, outerFirstMinCallPrice, info);
+    }
+
+    @Override
+    protected BigDecimal getStationaryCallPrice(CallInfo info) {
+        return getCallPrice(stationaryCallPrice, stationaryFirstMinCallPrice, info);
+    }
+
     private BigDecimal getCallPrice(double callPrice, double firstMinCallPrice, CallInfo info) {
         BigDecimal price;
         Duration totalDuration = getDuration(info.getStart(), info.getEnd());
