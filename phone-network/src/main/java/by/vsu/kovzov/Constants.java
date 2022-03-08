@@ -1,8 +1,7 @@
 package by.vsu.kovzov;
 
 import by.vsu.kovzov.models.tariffs.CallTariff;
-import by.vsu.kovzov.models.tariffs.impl.ATariff;
-import by.vsu.kovzov.models.tariffs.impl.AbstractTariff;
+import by.vsu.kovzov.models.tariffs.impl.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +11,10 @@ public class Constants {
     public final static List<String> OUTER_OPERATOR_CODES = Arrays.asList("25", "29", "33", "44");
 
     public static final Map<Class<? extends CallTariff>, CallTariff> TARIFFS = Map.ofEntries(
-            Map.entry(ATariff.class, new ATariff())
+            Map.entry(ATariff.class, new ATariff()),
+            Map.entry(BTariff.class, new BTariff()),
+            Map.entry(VTariff.class, new VTariff()),
+            Map.entry(GTariff.class, new GTariff())
     );
 
 
