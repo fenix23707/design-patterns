@@ -30,19 +30,30 @@ public class BTariff extends AbstractTariff{
         if (isRoaming(phone)) {
             duration = Duration.ofMinutes(1);
         } else {
-            duration = Duration.ofSeconds(1);
+            duration = Duration.ofSeconds(10);
         }
         return duration;
     }
 
     @Override
     protected BigDecimal getInnerCallPrice(CallInfo info) {
-        Duration duration = getDuration(info.getStart(), info.getEnd());
-        if (duration.compareTo(Duration.ofMinutes(1)) <= 0) {
+        return getCallPrice(innerCallPrice, innerFirstMinCallPrice, info);
+    }
 
-        } else {
-
+    private BigDecimal getCallPrice(double callPrice, double firstMinCallPrice, CallInfo info) {
+        BigDecimal price;
+        Duration totalDuration = getDuration(info.getStart(), info.getEnd());
+        Duration firstMinDuration = totalDuration;
+        if (totalDuration.compareTo(Duration.ofMinutes(1)) > 0) {
+            firstMinDuration = Duration.ofMinutes(1);
         }
-        return super.getInnerCallPrice(info);
+        Duration duration = totalDuration.minus(firstMinDuration);
+
+        price = getNumOfCallPieces(firstMinDuration, info)
+                .multiply(getPriceOneCallPiece(firstMinCallPrice, info));
+        return price.add(
+                getNumOfCallPieces(duration, info)
+                        .multiply(getPriceOneCallPiece(callPrice, info))
+        );
     }
 }

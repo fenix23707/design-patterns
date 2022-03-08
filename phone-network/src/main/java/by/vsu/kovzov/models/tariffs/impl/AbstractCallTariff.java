@@ -5,6 +5,8 @@ import by.vsu.kovzov.models.info.CallInfo;
 import by.vsu.kovzov.models.tariffs.CallTariff;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.util.Date;
 
@@ -45,43 +47,40 @@ public abstract class AbstractCallTariff implements CallTariff {
     }
 
     protected BigDecimal getRoamingCallPrice(CallInfo info) {
-        return getCallPriceCoefficient(info)
-                .multiply(BigDecimal.valueOf(roamingCallPrice))
-                .multiply(getCallBillingPieces(info));
+        return getNumOfCallPieces(info)
+                .multiply(getPriceOneCallPiece(roamingCallPrice, info));
     }
 
     protected BigDecimal getInnerCallPrice(CallInfo info) {
-        return getCallPriceCoefficient(info)
-                .multiply(BigDecimal.valueOf(innerCallPrice))
-                .multiply(getCallBillingPieces(info));
+        return getNumOfCallPieces(info)
+                .multiply(getPriceOneCallPiece(innerCallPrice, info));
     }
 
     protected BigDecimal getOuterCallPrice(CallInfo info) {
-        return getCallPriceCoefficient(info)
-                .multiply(BigDecimal.valueOf(outerCallPrice))
-                .multiply(getCallBillingPieces(info));
+        return getNumOfCallPieces(info)
+                .multiply(getPriceOneCallPiece(outerCallPrice, info));
     }
 
     protected BigDecimal getStationaryCallPrice(CallInfo info) {
-        return getCallPriceCoefficient(info)
-                .multiply(BigDecimal.valueOf(stationaryCallPrice))
-                .multiply(getCallBillingPieces(info));
+        return getNumOfCallPieces(info)
+                .multiply(getPriceOneCallPiece(stationaryCallPrice, info));
     }
 
+    protected BigDecimal getPriceOneCallPiece(double callPrice,CallInfo info) {
+        long billingTime = getCallBillingTime(info).getSeconds();
+        BigDecimal numOfPieces = BigDecimal.valueOf(timeOfPriceMeasurement.getSeconds() / billingTime);
+        BigDecimal price = BigDecimal.valueOf(callPrice);
+        return price.divide(numOfPieces, MathContext.DECIMAL64);
+    }
 
+    protected BigDecimal getNumOfCallPieces(CallInfo info) {
+        Duration duration = getDuration(info.getStart(), info.getEnd());
+        return getNumOfCallPieces(duration, info);
+    }
 
-
-    protected BigDecimal getCallBillingPieces(CallInfo info) {
-        double duration = getDuration(info.getStart(), info.getEnd()).getSeconds();
+    protected BigDecimal getNumOfCallPieces(Duration duration, CallInfo info) {
         double billingTime = getCallBillingTime(info).getSeconds();
 
-        return BigDecimal.valueOf(Math.ceil(duration / billingTime));
+        return BigDecimal.valueOf(Math.ceil(duration.getSeconds() / billingTime));
     }
-
-    protected final BigDecimal getCallPriceCoefficient(CallInfo info ) {
-        return BigDecimal.valueOf(
-                getCallBillingTime(info).getSeconds() / ((double) Duration.ofMinutes(1).getSeconds())
-        );
-    }
-
 }
