@@ -66,9 +66,17 @@ class CallTariffTest {
                         TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 901 * 1000)),
                         BigDecimal.valueOf(((ATariff)TARIFFS.get(ATariff.class)).innerCallPrice / 6 * 91)
-                )
-
-                /*   ,
+                ),
+                Arguments.of(
+                        TARIFFS.get(ATariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 2000 * 1000)),
+                        BigDecimal.valueOf(((ATariff)TARIFFS.get(ATariff.class)).innerCallPrice / 6 * 200)
+                ),
+                Arguments.of(
+                        TARIFFS.get(ATariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 11 * 1000)),
+                        BigDecimal.valueOf(((ATariff)TARIFFS.get(ATariff.class)).innerCallPrice / 6 * 2)
+                ),
 
                 // B tariff
                 Arguments.of(
@@ -95,9 +103,49 @@ class CallTariffTest {
                         TARIFFS.get(BTariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 123 * 1000)),
                         BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice  + ((BTariff)TARIFFS.get(BTariff.class)).innerCallPrice / 6 * 7)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 190 * 1000)),
+                        BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice  + ((BTariff)TARIFFS.get(BTariff.class)).innerCallPrice / 6 * 13)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 2000 * 1000)),
+                        BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice  + ((BTariff)TARIFFS.get(BTariff.class)).innerCallPrice / 6 * 194)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 20 * 1000)),
+                        BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice /6 * 2)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 51 * 1000)),
+                        BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 36 * 1000)),
+                        BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice / 6 * 4)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 93 * 1000)),
+                        BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice + ((BTariff)TARIFFS.get(BTariff.class)).innerCallPrice/ 6 * 2)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 155 * 1000)),
+                        BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice + ((BTariff)TARIFFS.get(BTariff.class)).innerCallPrice/ 6 * 10)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 42 * 1000)),
+                        BigDecimal.valueOf(((BTariff)TARIFFS.get(BTariff.class)).innerFirstMinCallPrice / 6 * 5)
                 )
 
-                //*/
+                //
         );
     }
 }
