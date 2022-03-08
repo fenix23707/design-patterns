@@ -23,6 +23,13 @@ public class BTariff extends AbstractTariff{
         this.stationaryFirstMinCallPrice = 50;
     }
 
+    public BTariff(double roamingCallPrice, double innerCallPrice, double outerCallPrice, double stationaryCallPrice, double roamingSmsPrice, double innerSmsPrice, double innerFirstMinCallPrice, double outerFirstMinCallPrice, double stationaryFirstMinCallPrice) {
+        super(roamingCallPrice, innerCallPrice, outerCallPrice, stationaryCallPrice, roamingSmsPrice, innerSmsPrice);
+        this.innerFirstMinCallPrice = innerFirstMinCallPrice;
+        this.outerFirstMinCallPrice = outerFirstMinCallPrice;
+        this.stationaryFirstMinCallPrice = stationaryFirstMinCallPrice;
+    }
+
     @Override
     protected Duration getCallBillingTime(CallInfo info) {
         Phone phone = info.getTo().getPhone();
