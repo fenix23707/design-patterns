@@ -1,4 +1,1 @@
 # design-patterns
-
-#idea
-\*\*/.idead
