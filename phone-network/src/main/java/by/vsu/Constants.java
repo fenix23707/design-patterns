@@ -1,7 +1,6 @@
 package by.vsu;
 
 import by.vsu.models.tariffs.CallTariff;
-import by.vsu.models.tariffs.impl.*;
 import by.vsu.models.tariffs.impl.ATariff;
 import by.vsu.models.tariffs.impl.BTariff;
 import by.vsu.models.tariffs.impl.GTariff;

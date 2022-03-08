@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 
 import static by.vsu.Constants.OUTER_OPERATOR_CODES;
 import static by.vsu.Constants.TARIFFS;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CallTariffTest {
     @ParameterizedTest

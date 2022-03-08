@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.stream.Stream;
 
 import static by.vsu.Constants.TARIFFS;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class InternetTariffTest {
 
