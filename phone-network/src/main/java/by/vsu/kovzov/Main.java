@@ -15,7 +15,6 @@ import by.vsu.kovzov.models.operations.Operation;
 import by.vsu.kovzov.models.operations.SmsOperation;
 import by.vsu.kovzov.models.tariffs.Tariff;
 import by.vsu.kovzov.models.tariffs.impl.ATariff;
-import by.vsu.kovzov.models.tariffs.impl.AbstractTariff;
 import by.vsu.kovzov.services.OperationService;
 import by.vsu.kovzov.services.SubscriberService;
 import by.vsu.kovzov.services.impl.OperationServiceImpl;

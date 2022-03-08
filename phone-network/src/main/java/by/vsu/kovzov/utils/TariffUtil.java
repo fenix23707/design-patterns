@@ -5,6 +5,7 @@ import by.vsu.kovzov.models.info.CallInfo;
 
 import java.math.BigDecimal;
 import java.time.Duration;
+import java.util.Date;
 
 import static by.vsu.kovzov.Constants.OUTER_OPERATOR_CODES;
 
@@ -21,5 +22,9 @@ public class TariffUtil {
 
     public static boolean isRoaming(Phone phone) {
         return !"00375".equals(phone.getCountryCode());
+    }
+
+    public static Duration getDuration(Date start, Date end) {
+        return Duration.between(start.toInstant(), end.toInstant());
     }
 }

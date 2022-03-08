@@ -12,9 +12,9 @@ public class Constants {
 
     public static final Map<Class<? extends CallTariff>, CallTariff> TARIFFS = Map.ofEntries(
             Map.entry(ATariff.class, new ATariff()),
-            Map.entry(BTariff.class, new BTariff()),
-            Map.entry(VTariff.class, new VTariff()),
-            Map.entry(GTariff.class, new GTariff())
+            Map.entry(BTariff.class, new BTariff())
+//            Map.entry(VTariff.class, new VTariff()),
+//            Map.entry(GTariff.class, new GTariff())
     );
 
 

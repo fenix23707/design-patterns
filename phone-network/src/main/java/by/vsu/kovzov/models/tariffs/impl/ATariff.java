@@ -2,16 +2,19 @@ package by.vsu.kovzov.models.tariffs.impl;
 
 import by.vsu.kovzov.models.info.CallInfo;
 import by.vsu.kovzov.models.info.InternetInfo;
+import by.vsu.kovzov.models.tariffs.InternetTariff;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Date;
 
-public class ATariff extends AbstractTariff {
-    public final int internetPrice = 3_000;
+import static by.vsu.kovzov.utils.TariffUtil.getDuration;
+
+public class ATariff extends AbstractTariff implements InternetTariff {
+    public final double internetPrice = 3_000;
 
     @Override
-    public Duration getCallBillingTime() {
+    protected Duration getCallBillingTime(CallInfo info) {
         return Duration.ofSeconds(10);
     }
 

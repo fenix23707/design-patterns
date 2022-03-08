@@ -4,7 +4,7 @@ import by.vsu.kovzov.models.info.InternetInfo;
 
 import java.math.BigDecimal;
 
-public class VTariff extends AbstractTariff{
+public class VTariff {/*
     public VTariff() {
         super(1000, 5, 25, 25, 150, 150);
     }
@@ -12,5 +12,5 @@ public class VTariff extends AbstractTariff{
     @Override
     public BigDecimal getPrice(InternetInfo info) {
         return null;
-    }
+    }*/
 }
