@@ -5,13 +5,15 @@ import by.vsu.kovzov.models.info.InternetInfo;
 import by.vsu.kovzov.models.tariffs.InternetTariff;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.Duration;
-import java.util.Date;
 
 import static by.vsu.kovzov.utils.TariffUtil.getDuration;
 
 public class ATariff extends AbstractTariff implements InternetTariff {
-    public final double internetPrice = 3_000;
+    private final Duration timeOfPriceMeasurement;
+
+    public final double internetPrice;
 
     @Override
     protected Duration getCallBillingTime(CallInfo info) {
@@ -20,22 +22,25 @@ public class ATariff extends AbstractTariff implements InternetTariff {
 
     public ATariff() {
         super(2500, 25, 125, 95, 1000, 150);
+
+        this.internetPrice = 3_000;
+        this.timeOfPriceMeasurement = Duration.ofHours(1);
     }
 
     @Override
     public BigDecimal getPrice(InternetInfo info) {
         return BigDecimal.valueOf(internetPrice)
-                .multiply(getInternetBillingPieces(info));
+                .multiply(getNumOfInternetPieces(info), MathContext.DECIMAL64);
     }
 
-    protected BigDecimal getInternetBillingPieces(InternetInfo info) {
-        long duration = getDuration(info.getStart(), info.getEnd()).getSeconds();
-        double billingTime = ((double) getInternetBillingTime().getSeconds());
-
-        return BigDecimal.valueOf(duration / billingTime);
+    protected BigDecimal getNumOfInternetPieces(InternetInfo info) {
+        Duration duration = getDuration(info.getStart(), info.getEnd());
+        return getNumOfInternetPieces(duration);
     }
 
-    protected Duration getInternetBillingTime() {
-        return Duration.ofHours(1);
+    private BigDecimal getNumOfInternetPieces(Duration duration) {
+        double dur = duration.getSeconds();
+        double topm = timeOfPriceMeasurement.getSeconds();
+        return BigDecimal.valueOf(dur / topm);
     }
 }
