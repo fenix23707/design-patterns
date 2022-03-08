@@ -6,7 +6,7 @@ import by.vsu.models.info.InternetInfo;
 import java.math.BigDecimal;
 import java.time.Duration;
 
-public class GTariff extends BTariff{
+public class GTariff extends BTariff {
     public final double midlPartInternetPrice;
 
 
@@ -25,19 +25,21 @@ public class GTariff extends BTariff{
         BigDecimal price;
         long totalTraffic = info.getTraffic();
         long firstPartTraffic = totalTraffic;
-        if (totalTraffic > 50) {
-            firstPartTraffic = 50;
+        if (totalTraffic > 100) {
+            firstPartTraffic = 100;
         }
         price = BigDecimal.valueOf(firstPartTraffic * firstPartInternetPrice);
 
         totalTraffic -= firstPartTraffic;
-        firstPartTraffic = firstPartTraffic;
+        firstPartTraffic = totalTraffic;
         if (totalTraffic > 400) {
             firstPartTraffic = 400;
         }
         totalTraffic -= firstPartTraffic;
         price = price.add(BigDecimal.valueOf(firstPartTraffic * midlPartInternetPrice));
-
-        return price.add(BigDecimal.valueOf(totalTraffic * internetPrice));
+        if (totalTraffic > 0) {
+            price = price.add(BigDecimal.valueOf(totalTraffic * internetPrice));
+        }
+        return price;
     }
 }
