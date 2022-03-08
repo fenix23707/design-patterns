@@ -26,11 +26,11 @@ public class SmsOperation extends Operation{
 
     @Override
     protected BigDecimal calculatePrice() {
-        Tariff tariff = info.getFrom().getTariff();
+        Tariff tariff = getOwner().getTariff();
         if (tariff instanceof SmsTariff) {
             return ((SmsTariff) tariff).getPrice(info);
         } else {
-            throw new RuntimeException("Tariff " + info.getFrom().getTariff() + " doesn't support sms operation");
+            throw new RuntimeException("Tariff " + getOwner().getTariff() + " doesn't support sms operation");
         }
     }
 

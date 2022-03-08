@@ -47,9 +47,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        cleanData();
-        initSubscribers();
-        initOperations();
+//        cleanData();
+//        initSubscribers();
+//        initOperations();
 
         printList(operationService.findAll());
         System.out.println();

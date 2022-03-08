@@ -22,12 +22,8 @@ public abstract class Operation implements Serializable {
     protected abstract BigDecimal calculatePrice();
 
     public BigDecimal getPrice() {
-        if (price == null) {
-            price = calculatePrice();
-        }
-        return price;
+        return calculatePrice();
     }
-
 
 
     public Long getId() {
