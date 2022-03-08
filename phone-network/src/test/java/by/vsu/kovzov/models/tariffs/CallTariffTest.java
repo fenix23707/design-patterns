@@ -169,7 +169,33 @@ class CallTariffTest {
                 Arguments.of(
                         TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 60 * 1000)),
-                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).innerCallPrice)
+                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).outerCallPrice)
+                ),
+                Arguments.of(
+                        TARIFFS.get(ATariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 4 * 1000)),
+                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).outerCallPrice / 6 * 1)
+                ),
+                Arguments.of(
+                        TARIFFS.get(ATariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 901 * 1000)),
+                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).outerCallPrice / 6 * 91)
+                ),
+                // B tariff
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 61 * 1000)),
+                        BigDecimal.valueOf(((BTariff) TARIFFS.get(BTariff.class)).outerFirstMinCallPrice + ((BTariff) TARIFFS.get(BTariff.class)).outerCallPrice / 6)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 155 * 1000)),
+                        BigDecimal.valueOf(((BTariff) TARIFFS.get(BTariff.class)).outerFirstMinCallPrice + ((BTariff) TARIFFS.get(BTariff.class)).outerCallPrice / 6 * 10)
+                ),
+                Arguments.of(
+                        TARIFFS.get(BTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 4 * 1000)),
+                        BigDecimal.valueOf(((BTariff) TARIFFS.get(BTariff.class)).outerFirstMinCallPrice / 6)
                 )
         );
     }
@@ -192,7 +218,7 @@ class CallTariffTest {
                 Arguments.of(
                         TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 60 * 1000)),
-                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).innerCallPrice)
+                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).stationaryCallPrice)
                 )
         );
     }
@@ -215,7 +241,7 @@ class CallTariffTest {
                 Arguments.of(
                         TARIFFS.get(ATariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 60 * 1000)),
-                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).innerCallPrice)
+                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).roamingCallPrice)
                 )
         );
     }
