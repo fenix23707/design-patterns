@@ -30,7 +30,7 @@ import static by.vsu.kovzov.Constants.TARIFFS;
 public class Main {
     private final static String dataDir = "data/";
 
-    private static List<Class<? extends Tariff>> tariffs = Arrays.asList(ATariff.class);
+    private static List tariffs = Arrays.asList(TARIFFS.keySet().stream().toArray());
 
     private static OperationService operationService;
 
