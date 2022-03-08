@@ -1,4 +1,9 @@
-**/data/
+#Data
+*.data
+
+#idea
+**/.idea
+
 #Gradle
 **/.gradle/
 **/build/
