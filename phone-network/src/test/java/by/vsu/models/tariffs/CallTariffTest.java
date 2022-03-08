@@ -5,6 +5,8 @@ import by.vsu.models.Subscriber;
 import by.vsu.models.info.CallInfo;
 import by.vsu.models.tariffs.impl.ATariff;
 import by.vsu.models.tariffs.impl.BTariff;
+import by.vsu.models.tariffs.impl.GTariff;
+import by.vsu.models.tariffs.impl.VTariff;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -144,9 +146,36 @@ class CallTariffTest {
                         TARIFFS.get(BTariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 42 * 1000)),
                         BigDecimal.valueOf(((BTariff) TARIFFS.get(BTariff.class)).innerFirstMinCallPrice / 6 * 5)
-                )
+                ),
 
-                //
+                //V tariff
+                Arguments.of(
+                        TARIFFS.get(VTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 60 * 1000)),
+                        BigDecimal.valueOf(((VTariff) TARIFFS.get(VTariff.class)).innerFirstMinCallPrice)
+                ),
+                Arguments.of(
+                        TARIFFS.get(VTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 31 * 1000)),
+                        BigDecimal.valueOf(((VTariff) TARIFFS.get(VTariff.class)).innerFirstMinCallPrice )
+                ),
+                Arguments.of(
+                        TARIFFS.get(VTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 120 * 1000)),
+                        BigDecimal.valueOf(((VTariff) TARIFFS.get(VTariff.class)).innerFirstMinCallPrice + ((VTariff) TARIFFS.get(VTariff.class)).innerCallPrice)
+                ),
+                Arguments.of(
+                        TARIFFS.get(VTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 130 * 1000)),
+                        BigDecimal.valueOf(((VTariff) TARIFFS.get(VTariff.class)).innerFirstMinCallPrice + ((VTariff) TARIFFS.get(VTariff.class)).innerCallPrice*2)
+                ),
+
+                //G tariff
+                Arguments.of(
+                        TARIFFS.get(GTariff.class),
+                        new CallInfo(sub, sub, start, new Date(date + 60 * 1000)),
+                        BigDecimal.valueOf(((GTariff) TARIFFS.get(GTariff.class)).innerFirstMinCallPrice)
+                )
         );
     }
 
