@@ -25,7 +25,6 @@ public abstract class Operation implements Serializable {
         return calculatePrice();
     }
 
-
     public Long getId() {
         return id;
     }
