@@ -14,6 +14,6 @@ public class GTariff extends BTariff{
     }
 
     public GTariff() {
-        super(1000, 5, 25, 25, 150, 150, 100, 100, 100);
+        super(1000, 5, 25, 25, 150, 150, 100, 100, 100,1_250,1_000);
     }
 }
