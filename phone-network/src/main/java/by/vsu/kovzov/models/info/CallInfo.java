@@ -39,7 +39,7 @@ public class CallInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "CallInfo{" +
+        return "{" +
                 "from=" + from +
                 ", to=" + to +
                 ", start=" + start +

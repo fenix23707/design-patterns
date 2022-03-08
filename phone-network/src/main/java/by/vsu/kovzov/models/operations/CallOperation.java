@@ -36,7 +36,7 @@ public class CallOperation extends Operation {
 
     @Override
     public String toString() {
-        return "CallOperation{" +
+        return "Call{" +
                 "info=" + info +
                 '}';
     }

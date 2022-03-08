@@ -7,8 +7,10 @@ import by.vsu.kovzov.dao.file.SubscriberDaoFileImpl;
 import by.vsu.kovzov.models.Phone;
 import by.vsu.kovzov.models.Subscriber;
 import by.vsu.kovzov.models.info.CallInfo;
+import by.vsu.kovzov.models.info.InternetInfo;
 import by.vsu.kovzov.models.info.SmsInfo;
 import by.vsu.kovzov.models.operations.CallOperation;
+import by.vsu.kovzov.models.operations.InternetOperation;
 import by.vsu.kovzov.models.operations.Operation;
 import by.vsu.kovzov.models.operations.SmsOperation;
 import by.vsu.kovzov.models.tariffs.Tariff;
@@ -51,8 +53,9 @@ public class Main {
         initSubscribers();
         initOperations();
 
-        System.out.println(operationService.findAll());
-        System.out.println(subscriberService.findAll());
+        printList(operationService.findAll());
+        System.out.println();
+        printList(subscriberService.findAll());
     }
 
     public static void initOperations() {
@@ -65,7 +68,7 @@ public class Main {
             } else if (choose == 1) {
                 operation = getRandomSmsOperation(subscribers);
             } else {
-                operation = getRandomSmsOperation(subscribers);
+                operation = getRandomInternetOperation(subscribers);
             }
             operationService.save(operation);
         }
@@ -84,6 +87,14 @@ public class Main {
         SmsInfo info = new SmsInfo(subscribers.get(0),
                 subscribers.get(1 + RANDOM.nextInt(subscribers.size() - 1)));
         return new SmsOperation(info);
+    }
+
+    private static Operation getRandomInternetOperation(List<Subscriber> subscribers) {
+        InternetInfo info = new InternetInfo(subscribers.get(0),
+                RANDOM.nextInt(100),
+                new Date(),
+                new Date(System.currentTimeMillis() + 1000 * RANDOM.nextInt(60)));
+        return new InternetOperation(info);
     }
 
     public static void cleanData() {
@@ -119,5 +130,9 @@ public class Main {
 
     private static Tariff randomTariff() {
         return TARIFFS.get(tariffs.get(new Random().nextInt(tariffs.size())));
+    }
+
+    private static void printList(List list) {
+        list.forEach(System.out::println);
     }
 }

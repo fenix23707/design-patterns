@@ -52,7 +52,7 @@ public class Subscriber implements Serializable {
 
     @Override
     public String toString() {
-        return "Subscriber{" +
+        return "{" +
                 "phone=" + phone +
                 ", balance=" + balance +
                 ", tariff=" + tariff +

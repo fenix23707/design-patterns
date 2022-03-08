@@ -34,4 +34,11 @@ public class SmsOperation extends Operation{
             throw new RuntimeException("Tariff " + info.getFrom().getTariff() + " doesn't support sms operation");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Sms{" +
+                "info=" + info +
+                '}';
+    }
 }

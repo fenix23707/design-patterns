@@ -8,7 +8,7 @@ import java.time.Duration;
 public interface CallTariff extends Tariff {
     BigDecimal getPrice(CallInfo info);
 
-    default Duration getBillingTime() {
+    default Duration getCallBillingTime() {
         return Duration.ofMinutes(1);
     }
 }

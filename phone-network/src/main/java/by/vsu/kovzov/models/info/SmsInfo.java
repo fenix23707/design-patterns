@@ -35,7 +35,7 @@ public class SmsInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "SmsInfo{" +
+        return "{" +
                 "from=" + from +
                 ", to=" + to +
                 '}';
