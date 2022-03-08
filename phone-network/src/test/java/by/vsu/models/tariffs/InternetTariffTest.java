@@ -35,6 +35,16 @@ class InternetTariffTest {
                         TARIFFS.get(ATariff.class),
                         new InternetInfo(owner, 100, start, new Date(date + 60 * 60 * 1000)),
                         BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).internetPrice)
+                ),
+                Arguments.of(
+                        TARIFFS.get(ATariff.class),
+                        new InternetInfo(owner, 100, start, new Date(date + 49 * 60 * 1000)),
+                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).internetPrice)
+                ),
+                Arguments.of(
+                        TARIFFS.get(ATariff.class),
+                        new InternetInfo(owner, 100, start, new Date(date + 120 * 60 * 1000)),
+                        BigDecimal.valueOf(((ATariff) TARIFFS.get(ATariff.class)).internetPrice*2)
                 )
         );
     }
