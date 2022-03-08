@@ -400,17 +400,17 @@ class CallTariffTest {
                         BigDecimal.valueOf(((BTariff) TARIFFS.get(BTariff.class)).roamingCallPrice)
                 ),
                 Arguments.of(
-                        TARIFFS.get(VTariff.class),
+                        TARIFFS.get(BTariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 31 * 1000)),
                         BigDecimal.valueOf(((BTariff) TARIFFS.get(BTariff.class)).roamingCallPrice)
                 ),
                 Arguments.of(
-                        TARIFFS.get(VTariff.class),
+                        TARIFFS.get(BTariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 120 * 1000)),
                         BigDecimal.valueOf(((BTariff) TARIFFS.get(BTariff.class)).roamingCallPrice * 2)
                 ),
                 Arguments.of(
-                        TARIFFS.get(VTariff.class),
+                        TARIFFS.get(BTariff.class),
                         new CallInfo(sub, sub, start, new Date(date + 130 * 1000)),
                         BigDecimal.valueOf(((BTariff) TARIFFS.get(BTariff.class)).roamingCallPrice * 3)
                 ),
