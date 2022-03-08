@@ -38,4 +38,8 @@ public abstract class AbstractTariff extends AbstractCallTariff implements SmsTa
         return BigDecimal.valueOf(innerSmsPrice);
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 }
