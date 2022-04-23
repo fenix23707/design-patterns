@@ -1,5 +1,7 @@
 package by.vsu.kovzov.models;
 
+import java.util.Objects;
+
 public class Card {
     public final CardRank rank;
 
@@ -11,6 +13,19 @@ public class Card {
         this.rank = rank;
         this.suit = suit;
         this.color = color;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return rank == card.rank && suit == card.suit && color == card.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rank, suit, color);
     }
 
     @Override
