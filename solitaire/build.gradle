@@ -1,18 +1,43 @@
 plugins {
-    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.springframework.boot' version '2.6.4'
 }
 
 group 'by.vsu.kovzov'
 version '1.0-SNAPSHOT'
 
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+ext {
+    springVersion = '2.6.4'
+    // test
+    junitVersion = '5.7.2'
 }
+dependencies {
+    //spring
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${springVersion}")
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'net.rgielen:javafx-weaver-spring-boot-starter:1.3.0'
+
+
+    // test
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:${junitVersion}'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:${junitVersion}'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:${junitVersion}'
+}
+
+javafx {
+    version = "11.0.2"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+mainClassName = 'by.vsu.kovzov.Runner'
 
 test {
     useJUnitPlatform()
