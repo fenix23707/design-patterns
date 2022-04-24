@@ -1,18 +1,24 @@
 package by.vsu.kovzov.models;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class Card {
-    public final CardRank rank;
+    private final CardRank rank;
 
-    public final CardSuit suit;
+    private final CardSuit suit;
 
-    public final CardColor color;
-
-    public Card(CardRank rank, CardSuit suit, CardColor color) {
+    public Card(CardRank rank, CardSuit suit) {
         this.rank = rank;
         this.suit = suit;
-        this.color = color;
+    }
+
+    public CardRank getRank() {
+        return rank;
+    }
+
+    public CardSuit getSuit() {
+        return suit;
     }
 
     @Override
@@ -20,12 +26,12 @@ public class Card {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return rank == card.rank && suit == card.suit && color == card.color;
+        return rank == card.rank && suit == card.suit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rank, suit, color);
+        return Objects.hash(rank, suit);
     }
 
     @Override
@@ -33,19 +39,24 @@ public class Card {
         return "Card{" +
                 "rank=" + rank +
                 ", suit=" + suit +
-                ", color=" + color +
                 '}';
     }
 
     public enum CardRank {
-        ACE, KING, QUEEN, JACK, TEN, NINE, EIGHT, SEVEN, SIX, FIVE, FOUR, THREE, TWO
+        ACE, KING, QUEEN, JACK, TEN, NINE, EIGHT, SEVEN, SIX, FIVE, FOUR, THREE, TWO;
+
+        @Override
+        public String toString() {
+            return name().toLowerCase(Locale.ROOT);
+        }
     }
 
     public enum CardSuit {
-        SPADES, HEARTS, CLUBS, DIAMONDS
-    }
+        SPADES, HEARTS, CLUBS, DIAMONDS;
 
-    public enum CardColor {
-        RED, BLACK
+        @Override
+        public String toString() {
+            return name().toLowerCase(Locale.ROOT);
+        }
     }
 }

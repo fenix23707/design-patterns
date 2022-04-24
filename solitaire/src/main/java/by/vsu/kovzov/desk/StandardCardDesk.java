@@ -20,10 +20,9 @@ public class StandardCardDesk extends CardDesk {
 
     protected List<Card> generateCardDesk() {
         List<Card> cards = new ArrayList<>(CARD_SIZE);
-        for (Card.CardRank rank: Card.CardRank.values()) {
-            for (Card.CardSuit suit: Card.CardSuit.values()) {
-                cards.add(new Card(rank, suit, Card.CardColor.RED));
-                cards.add(new Card(rank, suit, Card.CardColor.BLACK));
+        for (Card.CardRank rank : Card.CardRank.values()) {
+            for (Card.CardSuit suit : Card.CardSuit.values()) {
+                cards.add(new Card(rank, suit));
             }
         }
         Collections.shuffle(cards);
