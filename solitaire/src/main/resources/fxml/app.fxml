@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.vsu.kovzov.controlles.AppController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: blue;">
@@ -15,7 +14,7 @@
             <Button layoutX="24.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="43.0" prefWidth="82.0" text="Start" />
          </children>
       </AnchorPane>
-      <GridPane fx:id="gameLayout" prefHeight="405.0" prefWidth="539.0" style="-fx-background-color: red;">
+      <GridPane fx:id="gameLayout" alignment="CENTER" prefHeight="405.0" prefWidth="539.0" style="-fx-background-color: blue;" HBox.hgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

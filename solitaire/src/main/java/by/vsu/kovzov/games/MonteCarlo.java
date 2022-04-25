@@ -15,8 +15,10 @@ public class MonteCarlo {
     public void init() {
         this.cardDesk = new StandardCardDesk();
         this.layout = new MonteCarloLayout();
+        this.layout.fill(cardDesk);
     }
 
-
-
+    public MonteCarloLayout getLayout() {
+        return layout;
+    }
 }
