@@ -40,4 +40,8 @@ public class AppController implements Initializable {
         gameLayoutService.update(monteCarlo);
 
     }
+
+    public void compress(MouseEvent mouseEvent) {
+        this.monteCarlo.compress();
+    }
 }

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static by.vsu.kovzov.Constants.CARD_DEFAULT_OPACITY;
 import static by.vsu.kovzov.Constants.CARD_HIGHLIGHT_OPACITY;
@@ -35,6 +36,21 @@ public class GameLayoutServiceImpl implements GameLayoutService {
     @Autowired
     public GameLayoutServiceImpl(CardService cardService) {
         this.cardService = cardService;
+    }
+
+    @Override
+    public void compress(MonteCarlo monteCarlo) {
+        CardDesk cardDesk = monteCarlo.getCardDesk();
+
+        List<Card> cards = gridPane.getChildren().stream()
+                .map(node -> (Card) node.getUserData())
+                .collect(Collectors.toList());
+
+        List<Card> additional = cardDesk.getCards(MonteCarlo.LAYOUT_SIZE - cards.size());
+        cards.addAll(additional);
+
+        clear();
+        show(cards);
     }
 
     @Override
@@ -81,13 +97,13 @@ public class GameLayoutServiceImpl implements GameLayoutService {
     @Override
     public void update(MonteCarlo monteCarlo) {
         clear();
-        show(monteCarlo);
+        CardDesk cardDesk = monteCarlo.getCardDesk();
+        List<Card> cards = cardDesk.getCards(MonteCarlo.LAYOUT_SIZE);
+        show(cards);
     }
 
     @Override
-    public void show(MonteCarlo monteCarlo) {
-        CardDesk cardDesk = monteCarlo.getCardDesk();
-        List<Card> cards = cardDesk.getCards(MonteCarlo.LAYOUT_SIZE);
+    public void show(List<Card> cards) {
         int col;
         int row = -1;
         for (int i = 0; i < cards.size(); i++) {
@@ -95,7 +111,7 @@ public class GameLayoutServiceImpl implements GameLayoutService {
             if (col == 0) {
                 row++;
             }
-            gridPane.add(toImageView(cardDesk.getCard()), col, row);
+            gridPane.add(toImageView(cards.get(i)), col, row);
         }
     }
 

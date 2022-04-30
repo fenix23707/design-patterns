@@ -32,7 +32,7 @@ public class MonteCarlo extends CardGame {
     }
 
     @Override
-    public void choose(int row, int col) {
+    public synchronized void choose(int row, int col) {
         Card card = gameLayoutService.getCard(row, col);
         if (this.save == null) {
             this.save = card;
@@ -43,13 +43,16 @@ public class MonteCarlo extends CardGame {
         }
     }
 
+    public void compress() {
+        gameLayoutService.compress(this);
+    }
+
     private void move(Card c1, Card c2) {
-        if (isSimilarRank(c1, c2) && isClose(c1, c2)) {
+        if (isSimilarRank(c1, c2) && isClose(c1, c2) && c1 != c2) {
             remove(c1, c2);
         } else {
             gameLayoutService.cancelHighlight(c1);
         }
-
     }
 
     private void remove(Card c1, Card c2) {

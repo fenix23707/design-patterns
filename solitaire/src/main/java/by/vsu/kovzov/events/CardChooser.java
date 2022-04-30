@@ -17,8 +17,12 @@ public class CardChooser implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         Node node = event.getPickResult().getIntersectedNode();
-        int row = GridPane.getRowIndex(node);
-        int col = GridPane.getColumnIndex(node);
-        choosable.choose(row, col);
+        try {
+            int row = GridPane.getRowIndex(node);
+            int col = GridPane.getColumnIndex(node);
+            choosable.choose(row, col);
+        } catch (NullPointerException e) {
+
+        }
     }
 }

@@ -5,6 +5,8 @@ import by.vsu.kovzov.models.Card;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 
+import java.util.List;
+
 public interface GameLayoutService {
 
     void setGridPane(GridPane pane);
@@ -27,7 +29,9 @@ public interface GameLayoutService {
 
     void update( MonteCarlo monteCarlo);
 
-    void show( MonteCarlo monteCarlo);
+    void show(List<Card> cards);
 
     void clear();
+
+    void compress(MonteCarlo monteCarlo);
 }
