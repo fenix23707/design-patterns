@@ -10,6 +10,11 @@ public class StandardCardDesk extends CardDesk {
     private Queue<Card> cards;
 
     @Override
+    public List<Card> getCards(int size) {
+        return new ArrayList<>(cards).subList(0, size);
+    }
+
+    @Override
     public Card getCard() {
         return cards.poll();
     }

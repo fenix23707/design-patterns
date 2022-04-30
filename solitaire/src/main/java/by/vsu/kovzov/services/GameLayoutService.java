@@ -9,9 +9,25 @@ import java.util.List;
 
 public interface GameLayoutService {
 
-    void update(GridPane pane, MonteCarlo monteCarlo);
+    void setGridPane(GridPane pane);
 
-    void show(GridPane pane, MonteCarlo monteCarlo);
+    void highlight(int row, int col);
 
-    void clear(GridPane pane);
+    void highlight(Card card);
+
+    void cancelHighlight(int row, int col);
+
+    void cancelHighlight(Card card);
+
+    Card getCard(int row, int col);
+
+    void remove(int row, int col);
+
+    void remove(Card card);
+
+    void update( MonteCarlo monteCarlo);
+
+    void show( MonteCarlo monteCarlo);
+
+    void clear();
 }
