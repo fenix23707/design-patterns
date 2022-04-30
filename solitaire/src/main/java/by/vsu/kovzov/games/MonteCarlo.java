@@ -10,7 +10,9 @@ import static java.lang.Math.abs;
 public class MonteCarlo extends CardGame {
     public static final int LAYOUT_SIZE = 28;
 
-    public static final int COLUMNS_COUNT = 7;
+    public static final int COLS_COUNT = 7;
+
+    public static final int ROWS_COUNT = 4;
 
     private StandardCardDesk cardDesk;
 
@@ -48,16 +50,21 @@ public class MonteCarlo extends CardGame {
     }
 
     private void move(Card c1, Card c2) {
-        if (isSimilarRank(c1, c2) && isClose(c1, c2) && c1 != c2) {
+        if (isCardPair(c1, c2)) {
             remove(c1, c2);
         } else {
             gameLayoutService.cancelHighlight(c1);
         }
+        System.out.println(gameLayoutService.getCardPair(this).size());
     }
 
     private void remove(Card c1, Card c2) {
         gameLayoutService.remove(c1);
         gameLayoutService.remove(c2);
+    }
+
+    public boolean isCardPair(Card c1, Card c2) {
+        return c1 != null && c2!= null && c1 != c2 && isSimilarRank(c1, c2) && isClose(c1, c2);
     }
 
     private boolean isSimilarRank(Card c1, Card c2) {
@@ -69,5 +76,9 @@ public class MonteCarlo extends CardGame {
         Pair<Integer, Integer> p2 = gameLayoutService.getRowCol(c2);
 
         return abs(p1.getKey() - p2.getKey()) <= 1 && abs(p1.getValue() - p2.getValue()) <= 1;
+    }
+
+    private boolean isWin() {
+        return gameLayoutService.getSize() == 0 && cardDesk.size() == 0;
     }
 }

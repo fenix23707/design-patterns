@@ -34,4 +34,8 @@ public interface GameLayoutService {
     void clear();
 
     void compress(MonteCarlo monteCarlo);
+
+    int getSize();
+
+    List<Pair<Card, Card>> getCardPair(MonteCarlo monteCarlo);
 }

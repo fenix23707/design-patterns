@@ -10,4 +10,6 @@ public abstract class CardDesk {
 
     public abstract List<Card> getCards(int size);
 
+    public abstract int size();
+
 }

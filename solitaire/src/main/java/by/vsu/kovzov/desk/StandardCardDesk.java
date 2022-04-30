@@ -3,7 +3,6 @@ package by.vsu.kovzov.desk;
 import by.vsu.kovzov.models.Card;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class StandardCardDesk extends CardDesk {
     public static final int CARD_SIZE = 52;
@@ -37,6 +36,11 @@ public class StandardCardDesk extends CardDesk {
         }
         Collections.shuffle(cards);
         return cards;
+    }
+
+    @Override
+    public int size() {
+        return cards.size();
     }
 
 }

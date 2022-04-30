@@ -22,7 +22,7 @@ public class CardChooser implements EventHandler<MouseEvent> {
             int col = GridPane.getColumnIndex(node);
             choosable.choose(row, col);
         } catch (NullPointerException e) {
-
+            System.err.println("err");
         }
     }
 }
