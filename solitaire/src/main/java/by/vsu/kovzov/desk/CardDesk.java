@@ -2,7 +2,7 @@ package by.vsu.kovzov.desk;
 
 import by.vsu.kovzov.models.Card;
 
-import java.util.*;
+import java.util.List;
 
 public abstract class CardDesk {
 

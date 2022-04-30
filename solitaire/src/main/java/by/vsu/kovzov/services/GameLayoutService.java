@@ -1,11 +1,9 @@
 package by.vsu.kovzov.services;
 
 import by.vsu.kovzov.games.MonteCarlo;
-import by.vsu.kovzov.games.MonteCarloLayout;
 import by.vsu.kovzov.models.Card;
 import javafx.scene.layout.GridPane;
-
-import java.util.List;
+import javafx.util.Pair;
 
 public interface GameLayoutService {
 
@@ -20,6 +18,8 @@ public interface GameLayoutService {
     void cancelHighlight(Card card);
 
     Card getCard(int row, int col);
+
+    Pair<Integer, Integer> getRowCol(Card card);
 
     void remove(int row, int col);
 

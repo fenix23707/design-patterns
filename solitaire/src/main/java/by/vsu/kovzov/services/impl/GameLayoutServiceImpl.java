@@ -1,9 +1,7 @@
 package by.vsu.kovzov.services.impl;
 
-import by.vsu.kovzov.Constants;
 import by.vsu.kovzov.desk.CardDesk;
 import by.vsu.kovzov.games.MonteCarlo;
-import by.vsu.kovzov.games.MonteCarloLayout;
 import by.vsu.kovzov.models.Card;
 import by.vsu.kovzov.services.CardService;
 import by.vsu.kovzov.services.GameLayoutService;
@@ -12,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +60,12 @@ public class GameLayoutServiceImpl implements GameLayoutService {
     @Override
     public Card getCard(int row, int col) {
         return (Card) getNode(row, col).getUserData();
+    }
+
+    @Override
+    public Pair<Integer, Integer> getRowCol(Card card) {
+        Node node = getNode(card);
+        return new Pair<>(gridPane.getRowIndex(node), gridPane.getColumnIndex(node));
     }
 
     @Override

@@ -1,7 +1,6 @@
 package by.vsu.kovzov.events;
 
 import by.vsu.kovzov.games.Choosable;
-import by.vsu.kovzov.services.GameLayoutService;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
