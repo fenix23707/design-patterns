@@ -3,7 +3,10 @@ package by.vsu.kovzov.games;
 import by.vsu.kovzov.desk.StandardCardDesk;
 import by.vsu.kovzov.models.Card;
 import by.vsu.kovzov.services.GameLayoutService;
+import by.vsu.kovzov.services.GameService;
 import javafx.util.Pair;
+
+import java.util.List;
 
 import static java.lang.Math.abs;
 
@@ -20,8 +23,11 @@ public class MonteCarlo extends CardGame {
 
     private GameLayoutService gameLayoutService;
 
-    public MonteCarlo(GameLayoutService gameLayoutService) {
+    private GameService gameService;
+
+    public MonteCarlo(GameLayoutService gameLayoutService, GameService gameService) {
         this.gameLayoutService = gameLayoutService;
+        this.gameService = gameService;
         init();
     }
 
@@ -47,6 +53,7 @@ public class MonteCarlo extends CardGame {
 
     public void compress() {
         gameLayoutService.compress(this);
+        checkEndOfGame();
     }
 
     private void move(Card c1, Card c2) {
@@ -55,7 +62,17 @@ public class MonteCarlo extends CardGame {
         } else {
             gameLayoutService.cancelHighlight(c1);
         }
-        System.out.println(gameLayoutService.getCardPair(this).size());
+    }
+
+    private void checkEndOfGame() {
+        List<Pair<Card, Card>> cardPairs = gameLayoutService.getCardPair(this);
+        System.out.println(cardPairs.size());
+        if (isWin()) {
+            gameService.informWin();
+        } else if (isLose(cardPairs.size())) {
+            gameService.informLose();
+        }
+
     }
 
     private void remove(Card c1, Card c2) {
@@ -64,7 +81,7 @@ public class MonteCarlo extends CardGame {
     }
 
     public boolean isCardPair(Card c1, Card c2) {
-        return c1 != null && c2!= null && c1 != c2 && isSimilarRank(c1, c2) && isClose(c1, c2);
+        return c1 != null && c2 != null && c1 != c2 && isSimilarRank(c1, c2) && isClose(c1, c2);
     }
 
     private boolean isSimilarRank(Card c1, Card c2) {
@@ -79,6 +96,10 @@ public class MonteCarlo extends CardGame {
     }
 
     private boolean isWin() {
-        return gameLayoutService.getSize() == 0 && cardDesk.size() == 0;
+        return gameLayoutService.size() == 0 && cardDesk.size() == 0;
+    }
+
+    private boolean isLose(int cardPairSize) {
+        return cardPairSize == 0 && (gameLayoutService.size() == LAYOUT_SIZE || cardDesk.size() == 0);
     }
 }

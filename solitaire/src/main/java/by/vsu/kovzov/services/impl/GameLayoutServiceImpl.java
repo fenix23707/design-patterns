@@ -157,7 +157,7 @@ public class GameLayoutServiceImpl implements GameLayoutService {
     }
 
     @Override
-    public int getSize() {
+    public int size() {
         return gridPane.getChildren().size();
     }
 

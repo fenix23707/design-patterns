@@ -3,6 +3,7 @@ package by.vsu.kovzov.controlles;
 import by.vsu.kovzov.events.CardChooser;
 import by.vsu.kovzov.games.MonteCarlo;
 import by.vsu.kovzov.services.GameLayoutService;
+import by.vsu.kovzov.services.GameService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
@@ -26,19 +27,21 @@ public class AppController implements Initializable {
     @Autowired
     private GameLayoutService gameLayoutService;
 
+    @Autowired
+    private GameService gameService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         gameLayoutService.setGridPane(gameLayout);
     }
 
     public void startGame(MouseEvent mouseEvent) {
-        this.monteCarlo = new MonteCarlo(gameLayoutService);
+        this.monteCarlo = new MonteCarlo(gameLayoutService, gameService);
         CardChooser chooser = new CardChooser();
         chooser.setChoosable(monteCarlo);
         gameLayout.addEventHandler(MouseEvent.MOUSE_CLICKED, chooser);
 
         gameLayoutService.update(monteCarlo);
-
     }
 
     public void compress(MouseEvent mouseEvent) {
