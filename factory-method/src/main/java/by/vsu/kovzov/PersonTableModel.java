@@ -21,7 +21,7 @@ public class PersonTableModel implements TableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -31,6 +31,7 @@ public class PersonTableModel implements TableModel {
             case 1: return "Name";
             case 2: return "Patronymic";
             case 3: return "date of birth";
+            case 4: return "credit card num";
         }
         return null;
     }
@@ -59,6 +60,9 @@ public class PersonTableModel implements TableModel {
                 } else {
                     return "неизвестна";
                 }
+            case 4:
+                return persons.get(rowIndex).getCreditCardNumber();
+
         }
         return null;
     }
