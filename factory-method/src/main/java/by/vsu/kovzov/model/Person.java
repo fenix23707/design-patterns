@@ -1,4 +1,4 @@
-package by.vsu.kovzov;
+package by.vsu.kovzov.model;
 
 import java.util.Date;
 

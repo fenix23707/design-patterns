@@ -1,5 +1,8 @@
 package by.vsu.kovzov;
 
+import by.vsu.kovzov.io.PersonXmlReader;
+import by.vsu.kovzov.model.Person;
+
 import java.awt.BorderLayout;
 import java.util.List;
 

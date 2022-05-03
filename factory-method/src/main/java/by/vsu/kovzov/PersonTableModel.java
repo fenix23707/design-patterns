@@ -1,5 +1,7 @@
 package by.vsu.kovzov;
 
+import by.vsu.kovzov.model.Person;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;

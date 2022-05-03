@@ -1,5 +1,7 @@
 package by.vsu.kovzov;
 
+import by.vsu.kovzov.model.Person;
+
 import java.util.Calendar;
 import java.util.Comparator;
 
@@ -17,9 +19,9 @@ public class PersonComparator implements Comparator<Person> {
         Calendar c2 = Calendar.getInstance();
         c2.setTime(p2.getBirthday());
         switch(type) {
-            case "по дате": return c1.compareTo(c2);
-            case "по дню недели": return Integer.compare(c1.get(Calendar.DAY_OF_WEEK), c2.get(Calendar.DAY_OF_WEEK));
-            case "по месяцу": return Integer.compare(c1.get(Calendar.MONTH), c2.get(Calendar.MONTH));
+            case "by date": return c1.compareTo(c2);
+            case "by day of week": return Integer.compare(c1.get(Calendar.DAY_OF_WEEK), c2.get(Calendar.DAY_OF_WEEK));
+            case "by month": return Integer.compare(c1.get(Calendar.MONTH), c2.get(Calendar.MONTH));
         }
         throw new IllegalArgumentException();
     }
