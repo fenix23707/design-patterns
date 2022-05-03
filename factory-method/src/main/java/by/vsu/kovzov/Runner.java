@@ -1,9 +1,6 @@
 package by.vsu.kovzov;
 
-import by.vsu.kovzov.factory.DateComparatorFactory;
-import by.vsu.kovzov.factory.ComparatorFactory;
-import by.vsu.kovzov.factory.MonthComparatorFactory;
-import by.vsu.kovzov.factory.WeekDayComparatorFactory;
+import by.vsu.kovzov.factory.*;
 import by.vsu.kovzov.io.PersonXmlReader;
 import by.vsu.kovzov.models.Person;
 
@@ -37,6 +34,7 @@ public class Runner {
         comboBox.addItem(new DateComparatorFactory());
         comboBox.addItem(new WeekDayComparatorFactory());
         comboBox.addItem(new MonthComparatorFactory());
+        comboBox.addItem(new CreditCardComparatorFactory());
         chooser.add(comboBox, BorderLayout.CENTER);
         JButton sortButton = new JButton("sort");
         sortButton.addActionListener(new SortButtonListener(comboBox, model));
