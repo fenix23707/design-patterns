@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE persons SYSTEM "C:\University\Semester6\design-patterns\factory-method\src\main\resources\persons.dtd" >
+<persons>
+    <person>
+        <first-name>Иванов</first-name>
+        <middle-name>Иван</middle-name>
+        <last-name>Иванович</last-name>
+        <birthday>1982-01-01</birthday>
+    </person>
+    <person>
+        <first-name>Петров</first-name>
+        <middle-name>Пётр</middle-name>
+        <last-name>Петрович</last-name>
+        <birthday>1965-02-25</birthday>
+    </person>
+    <person>
+        <first-name>Сидоров</first-name>
+        <middle-name>Сидор</middle-name>
+        <last-name>Сидорович</last-name>
+        <birthday>1978-05-03</birthday>
+    </person>
+    <person>
+        <first-name>Васильев</first-name>
+        <middle-name>Василий</middle-name>
+        <last-name>Васильевич</last-name>
+        <birthday>1991-02-13</birthday>
+    </person>
+    <person>
+        <first-name>Кюльбрехт</first-name>
+        <middle-name>Сигизмунд</middle-name>
+        <last-name>Эдуардович</last-name>
+        <birthday>2000-01-31</birthday>
+    </person>
+</persons>
