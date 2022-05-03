@@ -1,6 +1,6 @@
 package by.vsu.kovzov.io;
 
-import by.vsu.kovzov.model.Person;
+import by.vsu.kovzov.models.Person;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

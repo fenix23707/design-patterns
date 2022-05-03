@@ -1,7 +1,11 @@
 package by.vsu.kovzov;
 
+import by.vsu.kovzov.factory.DateComparatorFactory;
+import by.vsu.kovzov.factory.ComparatorFactory;
+import by.vsu.kovzov.factory.MonthComparatorFactory;
+import by.vsu.kovzov.factory.WeekDayComparatorFactory;
 import by.vsu.kovzov.io.PersonXmlReader;
-import by.vsu.kovzov.model.Person;
+import by.vsu.kovzov.models.Person;
 
 import java.awt.BorderLayout;
 import java.util.List;
@@ -29,10 +33,10 @@ public class Runner {
         JScrollPane scrollPane = new JScrollPane(table);
         window.add(scrollPane, BorderLayout.CENTER);
         JPanel chooser = new JPanel(new BorderLayout());
-        JComboBox<String> comboBox = new JComboBox<>();
-        comboBox.addItem("by date");
-        comboBox.addItem("by day of week");
-        comboBox.addItem("by month");
+        JComboBox<ComparatorFactory<Person>> comboBox = new JComboBox<>();
+        comboBox.addItem(new DateComparatorFactory());
+        comboBox.addItem(new WeekDayComparatorFactory());
+        comboBox.addItem(new MonthComparatorFactory());
         chooser.add(comboBox, BorderLayout.CENTER);
         JButton sortButton = new JButton("sort");
         sortButton.addActionListener(new SortButtonListener(comboBox, model));
