@@ -42,7 +42,7 @@ public class CsvLawsuitBuilder  implements LawsuitBuilder{
         @SneakyThrows
         @Override
         public Lawsuit populateNewBean(String[] line) throws CsvBeanIntrospectionException {
-             SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-mm-dd");
+             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             Lawsuit lawsuit = new Lawsuit();
             lawsuit.setLawyer(new Lawyer());

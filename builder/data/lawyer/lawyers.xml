@@ -4,12 +4,12 @@
         <surname>surname1</surname>
         <name>name1</name>
         <patronymic>patronymic1</patronymic>
-        <specialty>specialty1</specialty>
+        <specialty>specialty2</specialty>
     </lawyer>
     <lawyer id="2" >
         <surname>surname2</surname>
         <name>name2</name>
-        <patronymic>patronymic2</patronymic>
+        <patronymic>patronymic1</patronymic>
         <specialty>specialty2</specialty>
     </lawyer>
 </lawyers>

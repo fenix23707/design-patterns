@@ -2,9 +2,11 @@ package by.vsu.kovzov.models;
 
 import lombok.Data;
 
+import javax.swing.text.DateFormatter;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
@@ -25,11 +27,12 @@ public class Lawsuit {
 
     @Override
     public String toString() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return "Lawsuit{" +
                 "id=" + id +
                 ", lawyer=" + lawyer.getId() +
-                ", start=" + start +
-                ", end=" + end +
+                ", start=" + format.format(start) +
+                ", end=" + format.format(end) +
                 ", description='" + description + '\'' +
                 ", result=" + result +
                 '}';

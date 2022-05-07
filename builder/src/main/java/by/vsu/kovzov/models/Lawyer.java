@@ -1,12 +1,14 @@
 package by.vsu.kovzov.models;
 
 import com.opencsv.bean.CsvBindByPosition;
+import com.opencsv.bean.CsvIgnore;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 @Data
 @XmlRootElement(name = "lawyer")
@@ -28,4 +30,7 @@ public class Lawyer {
 
     @CsvBindByPosition(position = 4)
     private String specialty;
+
+    @CsvIgnore
+    private List<Lawsuit> lawsuits;
 }

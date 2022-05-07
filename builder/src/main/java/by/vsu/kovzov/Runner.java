@@ -1,9 +1,12 @@
 package by.vsu.kovzov;
 
-import by.vsu.kovzov.builder.lawsuit.LawsuitBuilder;
-import by.vsu.kovzov.builder.lawyer.LawyerBuilder;
+import by.vsu.kovzov.comparators.SpecializationLawyerComparator;
+import by.vsu.kovzov.comparators.StartDateLawsuitComparator;
+import by.vsu.kovzov.controlles.LawController;
 import by.vsu.kovzov.factory.BuilderFactory;
 import by.vsu.kovzov.factory.SingletonBuilderFactory;
+import by.vsu.kovzov.service.LawyerService;
+import by.vsu.kovzov.service.LawyerServiceImpl;
 import org.apache.commons.cli.*;
 
 public class Runner {
@@ -13,13 +16,17 @@ public class Runner {
         init(args);
 
         BuilderFactory builderFactory = SingletonBuilderFactory.getInstance();
+        LawyerService lawyerService = new LawyerServiceImpl();
 
-        LawyerBuilder lawyerBuilder = builderFactory.getLawyerBuilder(cmd.getOptionValue("lawyer"));
-        LawsuitBuilder lawsuitBuilder = builderFactory.getLawsuitBuilder(cmd.getOptionValue("lawsuit"));
+        LawController lawController = new LawController(builderFactory, lawyerService);
 
-        System.out.println(lawyerBuilder.getAllLawyers());
-        System.out.println();
-        System.out.println(lawsuitBuilder.getAllLawsuits());
+        lawController.loadLawyers(cmd.getOptionValue("lawyer"));
+        lawController.enrichWithLawsuits(cmd.getOptionValue("lawsuit"));
+        lawController.sortLawsuits(new StartDateLawsuitComparator());
+        lawController.enrichEfficiency();
+        lawController.sortEnrichedLawyers(new SpecializationLawyerComparator());
+
+        lawController.getResult().forEach(System.out::println);
     }
 
     private static void init(String[] args) {

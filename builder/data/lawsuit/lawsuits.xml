@@ -3,14 +3,14 @@
     <lawsuit id="1">
         <lawyer id="1"></lawyer>
         <start>2022-05-07</start>
-        <end>2022-05-07</end>
+        <end>2022-05-08</end>
         <description>desc1</description>
         <result>WIN</result>
     </lawsuit>
     <lawsuit id="2">
         <lawyer id="1"></lawyer>
         <start>2022-05-07</start>
-        <end>2022-05-07</end>
+        <end>2022-05-08</end>
         <description>desc1</description>
         <result>WIN</result>
     </lawsuit>
