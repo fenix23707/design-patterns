@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lawsuits>
+    <lawsuit id="1">
+        <lawyer id="1"></lawyer>
+        <start>2022-05-07</start>
+        <end>2022-05-07</end>
+        <description>desc1</description>
+        <result>WIN</result>
+    </lawsuit>
+    <lawsuit id="2">
+        <lawyer id="1"></lawyer>
+        <start>2022-05-07</start>
+        <end>2022-05-07</end>
+        <description>desc1</description>
+        <result>WIN</result>
+    </lawsuit>
+</lawsuits>

@@ -5,8 +5,6 @@ import by.vsu.kovzov.models.Lawyer;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvBeanIntrospectionException;
-import com.opencsv.exceptions.CsvChainedException;
-import com.opencsv.exceptions.CsvFieldAssignmentException;
 import lombok.SneakyThrows;
 
 import java.io.FileReader;
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvLawsuitBuilder  implements LawsuitBuilder{
-
     private String filePath;
 
     public CsvLawsuitBuilder(String filePath) {

@@ -3,10 +3,18 @@ package by.vsu.kovzov.models;
 import com.opencsv.bean.CsvBindByPosition;
 import lombok.Data;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Data
+@XmlRootElement(name = "lawyer")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Lawyer {
 
     @CsvBindByPosition(position = 0)
+    @XmlAttribute(name = "id")
     private Long id;
 
     @CsvBindByPosition(position = 1)

@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvLawyerBuilder implements LawyerBuilder {
-    private static final String DELIMITER = ",";
-
     private String filePath;
 
     public CsvLawyerBuilder(String filePath) {
