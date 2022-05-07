@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Data
 public class Lawsuit {
+    private Long id;
     private Lawyer lawyer;
     private Date start;
     private Date end;
@@ -17,4 +18,15 @@ public class Lawsuit {
         WIN, LOSE
     }
 
+    @Override
+    public String toString() {
+        return "Lawsuit{" +
+                "id=" + id +
+                ", lawyer=" + lawyer.getId() +
+                ", start=" + start +
+                ", end=" + end +
+                ", description='" + description + '\'' +
+                ", result=" + result +
+                '}';
+    }
 }
