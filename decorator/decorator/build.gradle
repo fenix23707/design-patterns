@@ -10,6 +10,9 @@ repositories {
 }
 
 dependencies {
+
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.3'
+
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
