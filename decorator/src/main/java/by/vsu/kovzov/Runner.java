@@ -16,6 +16,8 @@ import by.vsu.kovzov.service.impl.ProductServiceImpl;
 
 import java.util.List;
 
+import static java.lang.String.format;
+
 public class Runner {
 
     private static String dir = "src/main/resources/";
@@ -24,7 +26,13 @@ public class Runner {
         ProductService productService = getProductService();
         List<Product> priceList = productService.getPriceList();
 
-        System.out.println(priceList);
+       printPriceList(priceList);
+    }
+
+    private static void printPriceList(List<Product> priceList) {
+        priceList.forEach(product -> {
+            System.out.println(format("%s\t%s\t%f", product.getCategory(), product.getName(), product.getPrice()));
+        });
     }
 
     private static ProductService getProductService() {
