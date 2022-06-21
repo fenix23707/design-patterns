@@ -10,5 +10,5 @@ public class ProductMargin {
     String category;
 
     @CsvBindByPosition(position = 1)
-    double value;
+    double percent;
 }

@@ -1,6 +1,5 @@
 package by.vsu.kovzov.repository.csv;
 
-import by.vsu.kovzov.model.Product;
 import by.vsu.kovzov.model.ProductMargin;
 import by.vsu.kovzov.repository.ProductMarginRepository;
 import com.opencsv.bean.CsvToBeanBuilder;

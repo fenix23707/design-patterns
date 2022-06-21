@@ -3,10 +3,8 @@ package by.vsu.kovzov.model;
 import com.opencsv.bean.CsvBindByPosition;
 import lombok.Data;
 
-import java.io.Serializable;
-
 @Data
-public class Product implements Serializable {
+public class Product implements Tradable {
 
     @CsvBindByPosition(position = 0)
     String category;

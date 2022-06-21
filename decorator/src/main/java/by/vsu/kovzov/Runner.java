@@ -1,6 +1,6 @@
 package by.vsu.kovzov;
 
-import by.vsu.kovzov.model.Product;
+import by.vsu.kovzov.model.Tradable;
 import by.vsu.kovzov.repository.DiscountRepository;
 import by.vsu.kovzov.repository.ProductMarginRepository;
 import by.vsu.kovzov.repository.ProductRepository;
@@ -24,14 +24,14 @@ public class Runner {
 
     public static void main(String[] args) {
         ProductService productService = getProductService();
-        List<Product> priceList = productService.getPriceList();
+        List<Tradable> priceList = productService.getPriceList();
 
        printPriceList(priceList);
     }
 
-    private static void printPriceList(List<Product> priceList) {
+    private static void printPriceList(List<Tradable> priceList) {
         priceList.forEach(product -> {
-            System.out.println(format("%s\t%s\t%f", product.getCategory(), product.getName(), product.getPrice()));
+            System.out.println(format("%-30s%-30s\t%f", product.getCategory(), product.getName(), product.getPrice()));
         });
     }
 
@@ -39,7 +39,7 @@ public class Runner {
         ProductMarginRepository marginRepository = new CsvProductMarginRepository(dir + "margins.csv");
         ProductMarginService marginService = new ProductMarginServiceImpl(marginRepository);
 
-        DiscountRepository discountRepository = new CsvDiscountRepository(dir + "discounts.csv");
+        DiscountRepository discountRepository = new CsvDiscountRepository(dir + "discount.csv");
         DiscountService discountService = new DiscountServiceImpl(discountRepository);
 
         ProductRepository productRepository = new CsvProductRepository(dir + "products.csv");

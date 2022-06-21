@@ -6,7 +6,6 @@ import by.vsu.kovzov.service.ProductMarginService;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 public class ProductMarginServiceImpl implements ProductMarginService {
