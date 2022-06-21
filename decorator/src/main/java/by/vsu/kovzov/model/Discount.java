@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Discount {
-    String category;
+    String productName;
     Type type;
     double value;
 
