@@ -1,8 +1,8 @@
-package by.vsu.kovzov;
+package by.vsu.kovzov.primitives;
 
 import java.awt.*;
 
-public class Circle {
+public class Circle implements Paintable {
 	private Point center;
 	private int radius;
 	private int x;
@@ -25,6 +25,7 @@ public class Circle {
 		return radius;
 	}
 
+	@Override
 	public void paint(Graphics2D g) {
 		g.fillOval(x, y, diameter, diameter);
 	}

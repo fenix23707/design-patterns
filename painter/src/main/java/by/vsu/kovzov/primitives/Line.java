@@ -1,8 +1,8 @@
-package by.vsu.kovzov;
+package by.vsu.kovzov.primitives;
 
 import java.awt.*;
 
-public class Line {
+public class Line implements Paintable {
 	private Point begin;
 	private Point end;
 
@@ -19,6 +19,7 @@ public class Line {
 		return end;
 	}
 
+	@Override
 	public void paint(Graphics2D g) {
 		g.drawLine(begin.getX(), begin.getY(), end.getX(), end.getY());
 	}

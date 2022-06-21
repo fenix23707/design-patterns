@@ -1,8 +1,8 @@
-package by.vsu.kovzov;
+package by.vsu.kovzov.primitives;
 
 import java.awt.*;
 
-public class Point {
+public class Point implements Paintable {
 	private int x;
 	private int y;
 

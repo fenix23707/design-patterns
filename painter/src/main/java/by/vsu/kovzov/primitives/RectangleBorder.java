@@ -1,8 +1,8 @@
-package by.vsu.kovzov;
+package by.vsu.kovzov.primitives;
 
 import java.awt.*;
 
-public class RectangleBorder {
+public class RectangleBorder implements Paintable {
 	private int x;
 	private int y;
 	private int width;

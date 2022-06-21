@@ -1,12 +1,15 @@
 package by.vsu.kovzov;
 
+import by.vsu.kovzov.primitives.*;
+
 import java.awt.*;
+import java.awt.Rectangle;
 import java.util.Collection;
 
 public class Picture extends Canvas {
-	private Collection<Object> figures;
+	private Collection<Paintable> figures;
 
-	public Picture(Collection<Object> figures) {
+	public Picture(Collection<Paintable> figures) {
 		this.figures = figures;
 	}
 
@@ -18,32 +21,8 @@ public class Picture extends Canvas {
 		g2.setColor(Color.WHITE);
 		java.awt.Rectangle r = getBounds();
 		g2.fillRect(r.x, r.y, r.width, r.height);
-		for(Object figure : figures) {
-			if(figure instanceof Point) {
-				((Point)figure).paint(g2);
-			} else if(figure instanceof Line) {
-				((Line)figure).paint(g2);
-			} else if(figure instanceof Rectangle) {
-				((Rectangle)figure).paint(g2);
-			} else if(figure instanceof RectangleBorder) {
-				((RectangleBorder)figure).paint(g2);
-			} else if(figure instanceof Circle) {
-				((Circle)figure).paint(g2);
-			} else if(figure instanceof CircleBorder) {
-				((CircleBorder)figure).paint(g2);
-			} else if(figure instanceof Polyline) {
-				((Polyline)figure).paint(g2);
-			} else if(figure instanceof Polygon) {
-				((Polygon)figure).paint(g2);
-			} else if(figure instanceof Colour) {
-				((Colour)figure).paint(g2);
-			} else if(figure instanceof LinearGradient) {
-				((LinearGradient)figure).paint(g2);
-			} else if(figure instanceof RadialGradient) {
-				((RadialGradient)figure).paint(g2);
-			} else if(figure instanceof Stroke) {
-				((Stroke)figure).paint(g2);
-			}
+		for(Paintable figure : figures) {
+			figure.paint(g2);
 		}
 	}
 }

@@ -1,8 +1,8 @@
-package by.vsu.kovzov;
+package by.vsu.kovzov.primitives;
 
 import java.awt.*;
 
-public class Rectangle {
+public class Rectangle implements Paintable {
 	private int x;
 	private int y;
 	private int width;
